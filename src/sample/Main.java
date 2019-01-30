@@ -15,17 +15,20 @@ import java.io.FileInputStream;
 
 public class Main extends Application {
     Image image;
+    Image title;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Super Intellij Bros");
         primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.show();
 
         FileInputStream input = new FileInputStream("/Users/paxton_wentzell/Desktop/AdvancedCS/Smash Clone/src/Unknown-3.png");
         image = new Image(input);
 
+        FileInputStream input1 = new FileInputStream("/Users/paxton_wentzell/Desktop/AdvancedCS/Smash Clone/out/production/Smash Clone/sample/Unknown.png");
+        title = new Image(input1);
         //imageView.setImage(image);
 
     }
