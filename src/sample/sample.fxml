@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -12,15 +13,24 @@
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
    </rowConstraints>
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="5.0" scaleY="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <ImageView fitHeight="38.0" fitWidth="29.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true" scaleX="5.0" scaleY="5.0" translateX="80.0" x="2.0" GridPane.columnIndex="1">
          <image>
-            <Image url="@../Unknown-3.png" />
+            <Image url="@../../../stage.png" />
          </image></ImageView>
+      <Canvas fx:id="cc" height="200.0" width="200.0" GridPane.columnIndex="1" />
    </children>
 </GridPane>

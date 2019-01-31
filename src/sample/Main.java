@@ -9,27 +9,25 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Pane;
 
 
 import java.io.FileInputStream;
 
 public class Main extends Application {
-    Image image;
-    Image title;
+    private Controller myController;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = loader.load();
+        myController = loader.getController();
+
         primaryStage.setTitle("Super Intellij Bros");
         primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.show();
-
-        FileInputStream input = new FileInputStream("/Users/paxton_wentzell/Desktop/AdvancedCS/Smash Clone/src/Unknown-3.png");
-        image = new Image(input);
-
-        FileInputStream input1 = new FileInputStream("/Users/paxton_wentzell/Desktop/AdvancedCS/Smash Clone/out/production/Smash Clone/sample/Unknown.png");
-        title = new Image(input1);
-        //imageView.setImage(image);
 
     }
 
