@@ -27,10 +27,15 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <ImageView fitHeight="38.0" fitWidth="29.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true" scaleX="5.0" scaleY="5.0" translateX="80.0" x="2.0" GridPane.columnIndex="1">
+      <ImageView fitHeight="38.0" fitWidth="29.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true" scaleX="5.0" scaleY="5.0" translateX="80.0" x="2.0">
          <image>
             <Image url="@../../../stage.png" />
          </image></ImageView>
-      <Canvas fx:id="cc" height="200.0" width="200.0" GridPane.columnIndex="1" />
+      <Canvas fx:id="cc" height="400.0" translateX="-100.0" translateY="-50.0" width="400.0" />
+      <ImageView fx:id="Stick" fitHeight="30.0" fitWidth="30.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" translateX="25.0" translateY="-2.0">
+         <image>
+            <Image url="@../../../Stickman.png" />
+         </image>
+      </ImageView>
    </children>
 </GridPane>
