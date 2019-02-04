@@ -67,20 +67,20 @@ public class Controller {
                 if (code == KeyCode.RIGHT){
                     image1X = image1X + 5;
                 }
-                if (code == KeyCode.W){
+                if (code == KeyCode.UP){
                     System.out.println("UP");
                     image2Y = image2Y - 5;
                 }
 
-                if (code == KeyCode.S){
+                if (code == KeyCode.DOWN){
                     image2Y = image2Y + 5;
                 }
 
-                if (code == KeyCode.A){
+                if (code == KeyCode.LEFT){
                     image2X = image2X - 5;
                 }
 
-                if (code == KeyCode.D){
+                if (code == KeyCode.RIGHT){
                     image2X = image2X + 5;
                 }
                 draw();
@@ -93,6 +93,6 @@ public class Controller {
         gc.drawImage(image, 120, 100, 300, 300);
         gc.drawImage(image1, image1X, image1Y, 40, 40);
         gc.drawImage(image2, image2X, image2Y, 40, 40);
-
+        gc.re
     }
 }
