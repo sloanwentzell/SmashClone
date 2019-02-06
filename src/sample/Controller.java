@@ -17,12 +17,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
+import javafx.scene.Group;
 
 
 public class Controller {
     public Canvas cc;
+    public Canvas cd;
 
     private GraphicsContext gc;
+    private GraphicsContext gd;
     int image1X = 130;
     int image1Y = 220;
     int image2X = 300;
@@ -38,10 +41,13 @@ public class Controller {
         gc = cc.getGraphicsContext2D();
         String stage = "stage.png";
         image = new Image(stage);
-
         String Stick = "sample/Stickman.png";
         image1 = new Image(Stick);
 
+        cd = new Canvas();
+        gd = cd.getGraphicsContext2D();
+        String stage1 = "stage.png";
+        image = new Image(stage1);
         String Stick1 = "sample/Stickman.png";
         image2 = new Image(Stick1);
         draw();
@@ -52,36 +58,51 @@ public class Controller {
                 KeyCode code = event.getCode();
 
                 if (code == KeyCode.UP){
-                    System.out.println("UP");
                     image1Y = image1Y - 5;
+                    System.out.println("Moving Stick 1");
                 }
 
                 if (code == KeyCode.DOWN){
                     image1Y = image1Y + 5;
+                    System.out.println("Moving Stick 1");
                 }
 
                 if (code == KeyCode.LEFT){
                     image1X = image1X - 5;
+                    System.out.println("Moving Stick 1");
                 }
 
                 if (code == KeyCode.RIGHT){
                     image1X = image1X + 5;
+                    System.out.println("Moving Stick 1");
                 }
+                draw();
+            }
+        });
+
+        cd.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                KeyCode code = event.getCode();
                 if (code == KeyCode.UP){
                     System.out.println("UP");
                     image2Y = image2Y - 5;
+                    System.out.println("Moving Stick 2");
                 }
 
                 if (code == KeyCode.DOWN){
                     image2Y = image2Y + 5;
+                    System.out.println("Moving Stick 2");
                 }
 
                 if (code == KeyCode.LEFT){
                     image2X = image2X - 5;
+                    System.out.println("Moving Stick 2");
                 }
 
                 if (code == KeyCode.RIGHT){
                     image2X = image2X + 5;
+                    System.out.println("Moving Stick 2");
                 }
                 draw();
             }
@@ -93,6 +114,6 @@ public class Controller {
         gc.drawImage(image, 120, 100, 300, 300);
         gc.drawImage(image1, image1X, image1Y, 40, 40);
         gc.drawImage(image2, image2X, image2Y, 40, 40);
-        gc.re
+        //gc.re
     }
 }

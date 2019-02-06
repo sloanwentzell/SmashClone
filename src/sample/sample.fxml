@@ -28,5 +28,6 @@
    </rowConstraints>
    <children>
       <Canvas fx:id="cc" height="400.0" translateX="-100.0" translateY="-50.0" width="400.0" />
+      <Canvas height="400.0" width="400.0" />
    </children>
 </GridPane>
