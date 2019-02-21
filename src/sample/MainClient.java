@@ -14,14 +14,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 
 public class MainClient extends Application{
-    private Controller myController;
+    private Controller controller;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
-        myController = loader.getController();
-        myController.setClientMode();
+        controller = loader.getController();
+        controller.setClientMode();
 
         Thread.currentThread().setName("Controller MainClient GUI Thread");
         primaryStage.setTitle("Super Intellij Bros");

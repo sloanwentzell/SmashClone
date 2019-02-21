@@ -36,6 +36,10 @@ public class Controller {
     public TextField portText;
     public Button startButton;
     public TextField statusText;
+    public String directionMoved;
+    public Controller controller;
+    public TextField yourNameText;
+
 
     public Canvas cc;
     public Canvas cd;
@@ -61,7 +65,8 @@ public class Controller {
         connected = false;
 
 //      Create and start the GUI updater thread
-        GUIUpdater updater = new GUIUpdater(inQueue);
+        GUIUpdater updater;
+        updater = new GUIUpdater(inQueue, controller);
         Thread updaterThread = new Thread(updater);
         updaterThread.start();
 
@@ -87,25 +92,25 @@ public class Controller {
                 String direction = "none";
                 KeyCode code = event.getCode();
 
-                if (code == KeyCode.UP){
+                if (code == KeyCode.UP) {
                     image1Y = image1Y - 5;
                     System.out.println("Moving Stick 1");
                     direction = "up";
                 }
 
-                if (code == KeyCode.DOWN){
+                if (code == KeyCode.DOWN) {
                     image1Y = image1Y + 5;
                     System.out.println("Moving Stick 1");
                     direction = "down";
                 }
 
-                if (code == KeyCode.LEFT){
+                if (code == KeyCode.LEFT) {
                     image1X = image1X - 5;
                     System.out.println("Moving Stick 1");
                     direction = "left";
                 }
 
-                if (code == KeyCode.RIGHT){
+                if (code == KeyCode.RIGHT) {
                     image1X = image1X + 5;
                     System.out.println("Moving Stick 1");
                     direction = "right";
@@ -124,26 +129,26 @@ public class Controller {
             public void handle(KeyEvent event) {
                 String direction1 = "none";
                 KeyCode code = event.getCode();
-                if (code == KeyCode.UP){
+                if (code == KeyCode.UP) {
                     System.out.println("UP");
                     image2Y = image2Y - 5;
                     System.out.println("Moving Stick 2");
                     direction1 = "up";
                 }
 
-                if (code == KeyCode.DOWN){
+                if (code == KeyCode.DOWN) {
                     image2Y = image2Y + 5;
                     System.out.println("Moving Stick 2");
                     direction1 = "down";
                 }
 
-                if (code == KeyCode.LEFT){
+                if (code == KeyCode.LEFT) {
                     image2X = image2X - 5;
                     System.out.println("Moving Stick 2");
                     direction1 = "left";
                 }
 
-                if (code == KeyCode.RIGHT){
+                if (code == KeyCode.RIGHT) {
                     image2X = image2X + 5;
                     System.out.println("Moving Stick 2");
                     direction1 = "right";
@@ -159,32 +164,15 @@ public class Controller {
     }
 
     void draw() {
-        gc.clearRect(0,0, cc.getWidth(), cc.getHeight());
+        gc.clearRect(0, 0, cc.getWidth(), cc.getHeight());
         gc.drawImage(image, 120, 100, 300, 300);
         gc.drawImage(image1, image1X, image1Y, 40, 40);
         gc.drawImage(image2, image2X, image2Y, 40, 40);
     }
 
-    void upAndDraw() {
+    static void upAndDraw() {
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     void setServerMode() {
@@ -263,3 +251,4 @@ public class Controller {
         }
     }
 }
+

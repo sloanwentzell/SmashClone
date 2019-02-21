@@ -1,13 +1,11 @@
 package sample;
 
+import javafx.scene.image.Image;
+
 import javax.xml.crypto.Data;
 
 public class GUIUpdater implements Runnable{
     private DataStructure inQueue;
-    private int image1X;
-    private int image1Y;
-    private int image2X;
-    private int image2Y;
 
     Controller controller;
 
@@ -18,7 +16,7 @@ public class GUIUpdater implements Runnable{
 
     public void run() {
         Thread.currentThread().setName("GUIUpdater Thread");
-        String directionMoved;
+        String directionMoved = null;
         while (!Thread.interrupted()) {
 
         }
