@@ -33,10 +33,10 @@
             <HBox prefHeight="100.0" prefWidth="400.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="75.0" text="IP Address:" />
-                  <TextField prefHeight="27.0" prefWidth="132.0" />
+                  <TextField fx:id="IPAddressText" prefHeight="27.0" prefWidth="132.0" />
                   <Label prefHeight="17.0" prefWidth="37.0" text="Port:" />
                   <TextField fx:id="portText" prefHeight="27.0" prefWidth="108.0" />
-                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="48.0" text="Start" />
+                  <Button fx:id="startButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="48.0" text="Start" />
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="400.0" translateY="-65.0">

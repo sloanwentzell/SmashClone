@@ -13,10 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 
-
-import java.io.FileInputStream;
-
-public class Main extends Application {
+public class MainClient extends Application{
     private Controller myController;
 
     @Override
@@ -24,7 +21,9 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
         myController = loader.getController();
+        myController.setClientMode();
 
+        Thread.currentThread().setName("Controller MainClient GUI Thread");
         primaryStage.setTitle("Super Intellij Bros");
         primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.show();
