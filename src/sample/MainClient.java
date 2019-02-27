@@ -17,17 +17,16 @@ public class MainClient extends Application{
     private Controller controller;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
-        controller = loader.getController();
-        controller.setClientMode();
-
         Thread.currentThread().setName("Controller MainClient GUI Thread");
         primaryStage.setTitle("Super Intellij Bros");
         primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.show();
 
+        controller = loader.getController();
+        controller.setClientMode();
     }
 
 
