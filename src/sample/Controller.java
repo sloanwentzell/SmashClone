@@ -42,9 +42,6 @@ public class Controller {
     Image image1;
     Image image2;
 
-    Controller() {
-
-    }
 
     public void initialize() {
 
@@ -73,6 +70,8 @@ public class Controller {
         String Stick1 = "sample/Stickman.png";
         image2 = new Image(Stick1);
         draw();
+        cc.setFocusTraversable(true);
+
 
         cc.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -104,6 +103,7 @@ public class Controller {
                     direction = "right";
                 }
                 draw();
+                cc.setFocusTraversable(true);
 
                 boolean putSuccess = outQueue.put(direction);
                 while (!putSuccess) {
@@ -157,11 +157,6 @@ public class Controller {
         gc.drawImage(image1, image1X, image1Y, 40, 40);
         gc.drawImage(image2, image2X, image2Y, 40, 40);
     }
-
-    static void upAndDraw() {
-
-    }
-
 
     void setServerMode() {
         serverMode = true;
@@ -234,9 +229,23 @@ public class Controller {
                 ex.printStackTrace();
                 statusText.setText("Client start: networking failed. Exiting....");
             }
-
             // We connected!
         }
+        cc.setFocusTraversable(true);
+    }
+
+    public static void changeXY(int player, int x, int y) {
+
+        if (player == 1) {
+            image1X = x;
+            image1Y = y;
+        }
+        draw();
+        if (player == 2) {
+            image2X = x;
+            image2Y = y;
+        }
+        draw();
     }
 }
 

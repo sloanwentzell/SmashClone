@@ -5,23 +5,28 @@ import java.io.Serializable;
 public class Message implements Serializable {
     // Message includes both sender ID and text data being sent
     private String sender;
-    private String data;
+    private int x;
+    private int y;
+
     // both fields are simple Strings, so default code is used to read/write these Strings
 
-    Message(String who, String what) {
+    Message(String who, int x1, int y1) {
         sender = who;
-        data = what;
+        x = x1;
+        y = y1;
     }
 
     String sender() {
         return sender;
     }
 
-    String data() {
-        return data;
+    int getX() { return x; }
+
+    int getY() {
+        return y;
     }
 
     public String toString() {
-        return "\"" + data + "\" from: " + sender;
+        return "(" + x + ", " + y + ") from: " + sender;
     }
 }

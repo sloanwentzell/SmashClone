@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.application.Platform;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 
 import javax.xml.crypto.Data;
@@ -18,11 +20,14 @@ public class GUIUpdater implements Runnable{
         Thread.currentThread().setName("GUIUpdater Thread");
         String directionMoved = null;
         while (!Thread.interrupted()) {
+            // Try to get a Message from the inputQueue
+            Message message = (Message)inQueue.get();
+            while (message == null) {
+                Thread.currentThread().yield();
+                message = (Message)inQueue.get();
+            }
+                Message finalMessage = message; // needed for Platform.runLater()
 
-        }
-
-        if (directionMoved.equals("up")) {
-            Controller.upAndDraw();
         }
 
     }

@@ -29,7 +29,7 @@ public class MainServer extends Application {
         primaryStage.show();
 
         myController = loader.getController();
-//        myController.setServerMode();
+        myController.setServerMode();
     }
 
     public static void main(String[] args) {
