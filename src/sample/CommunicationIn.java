@@ -57,29 +57,28 @@ public class CommunicationIn implements Runnable {
                 Platform.runLater(() -> statusText.setText("RECEIVED: " + finalMessage));
 
                 // ignore any messages sent by yourself: only put messages from others into your inQueue
-                if (!message.sender().equals(yourNameText.getText())) {
-                    // Now put message on the InputQueue so that the GUI will see it
-                    boolean putSucceeded = inQueue.put(message);
+                // Now put message on the InputQueue so that the GUI will see it
+                boolean putSucceeded = inQueue.put(message);
+                while (!putSucceeded) {
+                    Thread.currentThread().yield();
+                    putSucceeded = inQueue.put(message);
+                }
+                System.out.println("CommunicationIn PUT into InputQueue: " + message);
+                Platform.runLater(() -> statusText.setText("PUT into InputQueue: " + finalMessage));
+
+                // IF SERVER and MULTICAST: also put that incoming message on the OutputQueue so ALL clients see it
+                if (serverMode && MainServer.multicastMode) {
+                    putSucceeded = outQueue.put(message);
                     while (!putSucceeded) {
                         Thread.currentThread().yield();
-                        putSucceeded = inQueue.put(message);
-                    }
-                    System.out.println("CommunicationIn PUT into InputQueue: " + message);
-                    Platform.runLater(() -> statusText.setText("PUT into InputQueue: " + finalMessage));
-
-                    // IF SERVER and MULTICAST: also put that incoming message on the OutputQueue so ALL clients see it
-                    if (serverMode && MainServer.multicastMode) {
                         putSucceeded = outQueue.put(message);
-                        while (!putSucceeded) {
-                            Thread.currentThread().yield();
-                            putSucceeded = outQueue.put(message);
-                        }
-                        System.out.println("CommunicationIn MULTICAST into OutputQueue: " + message);
-                        Platform.runLater(() -> statusText.setText("MULTICAST into OutputQueue: " + finalMessage));
-
                     }
+                    System.out.println("CommunicationIn MULTICAST into OutputQueue: " + message);
+                    Platform.runLater(() -> statusText.setText("MULTICAST into OutputQueue: " + finalMessage));
+
                 }
             }
+
 
             // while loop ended!  close reader and socket
             socket.close();

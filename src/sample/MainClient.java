@@ -19,6 +19,7 @@ public class MainClient extends Application{
         primaryStage.show();
 
         controller = loader.getController();
+        controller.player = 1;
         controller.setClientMode();
     }
 

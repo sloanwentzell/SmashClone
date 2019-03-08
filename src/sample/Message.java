@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 public class Message implements Serializable {
     // Message includes both sender ID and text data being sent
-    private String sender;
+    private int sender;
     private int x;
     private int y;
 
     // both fields are simple Strings, so default code is used to read/write these Strings
 
-    Message(String who, int x1, int y1) {
+    Message(int who, int x1, int y1) {
         sender = who;
         x = x1;
         y = y1;
     }
 
-    String sender() {
+    int sender() {
         return sender;
     }
 

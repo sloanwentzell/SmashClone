@@ -28,6 +28,7 @@ public class Controller {
     public Controller controller;
     public TextField yourNameText;
 
+    public int player;
 
     public Canvas cc;
     public Canvas cd;
@@ -72,10 +73,10 @@ public class Controller {
         draw();
         cc.setFocusTraversable(true);
 
-
         cc.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
+                player = 1;
                 String direction = "none";
                 KeyCode code = event.getCode();
 
@@ -105,9 +106,11 @@ public class Controller {
                 draw();
                 cc.setFocusTraversable(true);
 
-                boolean putSuccess = outQueue.put(direction);
+                Message message = new Message(1, image1X, image1Y);
+
+                boolean putSuccess = outQueue.put(message);
                 while (!putSuccess) {
-                    putSuccess = outQueue.put(direction);
+                    putSuccess = outQueue.put(message);
                 }
             }
         });
@@ -115,8 +118,10 @@ public class Controller {
         cd.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
+                player = 2;
                 String direction1 = "none";
                 KeyCode code = event.getCode();
+
                 if (code == KeyCode.UP) {
                     System.out.println("UP");
                     image2Y = image2Y - 5;
@@ -142,6 +147,8 @@ public class Controller {
                     direction1 = "right";
                 }
                 draw();
+
+                Message message = new Message(2, image2X, image2Y);
 
                 boolean putSuccess = outQueue.put(direction1);
                 while (!putSuccess) {
@@ -234,16 +241,21 @@ public class Controller {
         cc.setFocusTraversable(true);
     }
 
-    public static void changeXY(int player, int x, int y) {
+    public void changeXY(int player, int x, int y) {
 
         if (player == 1) {
             image1X = x;
             image1Y = y;
+            cc.setVisible(true);
+            cd.setVisible(false);
         }
         draw();
+
         if (player == 2) {
             image2X = x;
             image2Y = y;
+            cc.setVisible(false);
+            cd.setVisible(true);
         }
         draw();
     }

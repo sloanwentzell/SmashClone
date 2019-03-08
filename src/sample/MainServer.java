@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainServer extends Application {
-    private Controller myController;
+    private Controller controller;
     // Change multicastMode to enable multi-cast
     static boolean multicastMode = true;
 
@@ -28,8 +28,9 @@ public class MainServer extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
-        myController = loader.getController();
-        myController.setServerMode();
+        controller = loader.getController();
+        controller.player = 2;
+        controller.setServerMode();
     }
 
     public static void main(String[] args) {

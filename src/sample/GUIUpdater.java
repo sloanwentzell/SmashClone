@@ -21,14 +21,16 @@ public class GUIUpdater implements Runnable{
         String directionMoved = null;
         while (!Thread.interrupted()) {
             // Try to get a Message from the inputQueue
-            Message message = (Message)inQueue.get();
+            Message message = (Message) inQueue.get();
             while (message == null) {
                 Thread.currentThread().yield();
-                message = (Message)inQueue.get();
+                message = (Message) inQueue.get();
             }
-                Message finalMessage = message; // needed for Platform.runLater()
+            Message finalMessage = message; // needed for Platform.runLater()
+
+            controller.changeXY(finalMessage.sender(), finalMessage.getX(), finalMessage.getY());
+
 
         }
-
     }
 }
