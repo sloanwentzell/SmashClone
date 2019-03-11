@@ -25,16 +25,13 @@ public class Controller {
     public Button startButton;
     public TextField statusText;
     public String directionMoved;
-    public Controller controller;
     public TextField yourNameText;
 
     public int player;
 
     public Canvas cc;
-    public Canvas cd;
 
     private GraphicsContext gc;
-    private GraphicsContext gd;
     int image1X = 130;
     int image1Y = 220;
     int image2X = 300;
@@ -52,7 +49,7 @@ public class Controller {
 
 //      Create and start the GUI updater thread
         GUIUpdater updater;
-        updater = new GUIUpdater(inQueue, controller);
+        updater = new GUIUpdater(inQueue, this);
         Thread updaterThread = new Thread(updater);
         updaterThread.start();
 
@@ -64,8 +61,6 @@ public class Controller {
         String Stick = "sample/Stickman.png";
         image1 = new Image(Stick);
 
-        cd = new Canvas();
-        gd = cd.getGraphicsContext2D();
         String stage1 = "sample/stage.png";
         image = new Image(stage1);
         String Stick1 = "sample/Stickman.png";
@@ -76,37 +71,60 @@ public class Controller {
         cc.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                player = 1;
                 String direction = "none";
                 KeyCode code = event.getCode();
 
                 if (code == KeyCode.UP) {
-                    image1Y = image1Y - 5;
+                    if (player == 1) {
+                        image1Y = image1Y - 5;
+                    } else {
+                        image2Y = image2Y - 5;
+                    }
                     System.out.println("Moving Stick 1");
                     direction = "up";
                 }
 
                 if (code == KeyCode.DOWN) {
-                    image1Y = image1Y + 5;
+                    if (player == 1) {
+                        image1Y = image1Y + 5;
+                    } else {
+                        image2Y = image2Y + 5;
+                    }
                     System.out.println("Moving Stick 1");
                     direction = "down";
                 }
 
                 if (code == KeyCode.LEFT) {
-                    image1X = image1X - 5;
+                    if (player == 1) {
+                        image1X = image1X - 5;
+                    } else {
+                        image2X = image2X - 5;
+                }
                     System.out.println("Moving Stick 1");
                     direction = "left";
                 }
 
                 if (code == KeyCode.RIGHT) {
+                if (player == 1) {
                     image1X = image1X + 5;
+
+                } else {
+                    image2X = image2X + 5;
+                }
                     System.out.println("Moving Stick 1");
                     direction = "right";
                 }
                 draw();
                 cc.setFocusTraversable(true);
 
-                Message message = new Message(1, image1X, image1Y);
+                Message message;
+                if (player == 1) {
+                    message = new Message(player, image1X, image1Y);
+                } else {
+                    message = new Message(player, image2X, image2Y);
+
+                }
+
 
                 boolean putSuccess = outQueue.put(message);
                 while (!putSuccess) {
@@ -115,47 +133,6 @@ public class Controller {
             }
         });
 
-        cd.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                player = 2;
-                String direction1 = "none";
-                KeyCode code = event.getCode();
-
-                if (code == KeyCode.UP) {
-                    System.out.println("UP");
-                    image2Y = image2Y - 5;
-                    System.out.println("Moving Stick 2");
-                    direction1 = "up";
-                }
-
-                if (code == KeyCode.DOWN) {
-                    image2Y = image2Y + 5;
-                    System.out.println("Moving Stick 2");
-                    direction1 = "down";
-                }
-
-                if (code == KeyCode.LEFT) {
-                    image2X = image2X - 5;
-                    System.out.println("Moving Stick 2");
-                    direction1 = "left";
-                }
-
-                if (code == KeyCode.RIGHT) {
-                    image2X = image2X + 5;
-                    System.out.println("Moving Stick 2");
-                    direction1 = "right";
-                }
-                draw();
-
-                Message message = new Message(2, image2X, image2Y);
-
-                boolean putSuccess = outQueue.put(direction1);
-                while (!putSuccess) {
-                    putSuccess = outQueue.put(direction1);
-                }
-            }
-        });
     }
 
     void draw() {
@@ -246,16 +223,11 @@ public class Controller {
         if (player == 1) {
             image1X = x;
             image1Y = y;
-            cc.setVisible(true);
-            cd.setVisible(false);
         }
-        draw();
 
         if (player == 2) {
             image2X = x;
             image2Y = y;
-            cc.setVisible(false);
-            cd.setVisible(true);
         }
         draw();
     }

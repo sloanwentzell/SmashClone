@@ -15,7 +15,7 @@ public class MainClient extends Application{
         Parent root = loader.load();
         Thread.currentThread().setName("Controller MainClient GUI Thread");
         primaryStage.setTitle("Super Intellij Bros");
-        primaryStage.setScene(new Scene(root, 1440, 900));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
         controller = loader.getController();
