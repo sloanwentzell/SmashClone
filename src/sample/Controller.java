@@ -47,6 +47,8 @@ public class Controller {
         outQueue = new DataStructure();
         connected = false;
 
+
+
 //      Create and start the GUI updater thread
         GUIUpdater updater;
         updater = new GUIUpdater(inQueue, this);
@@ -105,12 +107,12 @@ public class Controller {
                 }
 
                 if (code == KeyCode.RIGHT) {
-                if (player == 1) {
-                    image1X = image1X + 5;
+                    if (player == 1) {
+                        image1X = image1X + 5;
 
-                } else {
-                    image2X = image2X + 5;
-                }
+                    } else {
+                        image2X = image2X + 5;
+                    }
                     System.out.println("Moving Stick 1");
                     direction = "right";
                 }
