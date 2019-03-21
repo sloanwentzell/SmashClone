@@ -28,7 +28,7 @@ public class GUIUpdater implements Runnable{
             }
             Message finalMessage = message; // needed for Platform.runLater()
 
-            controller.changeXY(finalMessage.sender(), finalMessage.getX(), finalMessage.getY());
+            controller.changeXY(finalMessage.sender(), finalMessage.getX(), finalMessage.getY(), finalMessage.getXv(), finalMessage.getYv(), finalMessage.getRl());
 
 
         }

@@ -24,18 +24,26 @@ public class Controller {
     public TextField portText;
     public Button startButton;
     public TextField statusText;
-    public String directionMoved;
     public TextField yourNameText;
-
     public int player;
-
     public Canvas cc;
+    public GraphicsContext gc;
+    public String directionMoved;
 
-    private GraphicsContext gc;
-    int image1X = 130;
-    int image1Y = 220;
-    int image2X = 300;
-    int image2Y = 220;
+    double x1 = 130;
+    double xv1 = 220;
+    double yv1 = 0;
+    double y1 = 220;
+
+    double x2 = 300;
+    double y2 = 220;
+    double xv2 = 220;
+    double yv2 = 0;
+
+    boolean jump1 = false;
+    boolean jump2 =  false;
+    double rl1 = 0;
+    double rl2 = 0;
     Image image;
     Image image1;
     Image image2;
@@ -78,9 +86,9 @@ public class Controller {
 
                 if (code == KeyCode.UP) {
                     if (player == 1) {
-                        image1Y = image1Y - 5;
+                        y1 = y1 - 5;
                     } else {
-                        image2Y = image2Y - 5;
+                        y2 = y2 - 5;
                     }
                     System.out.println("Moving Stick 1");
                     direction = "up";
@@ -88,9 +96,9 @@ public class Controller {
 
                 if (code == KeyCode.DOWN) {
                     if (player == 1) {
-                        image1Y = image1Y + 5;
+                        y1 = y1 + 5;
                     } else {
-                        image2Y = image2Y + 5;
+                        y2 = y2 + 5;
                     }
                     System.out.println("Moving Stick 1");
                     direction = "down";
@@ -98,9 +106,9 @@ public class Controller {
 
                 if (code == KeyCode.LEFT) {
                     if (player == 1) {
-                        image1X = image1X - 5;
+                        x1 = x1 - 5;
                     } else {
-                        image2X = image2X - 5;
+                        x2 = x2 - 5;
                 }
                     System.out.println("Moving Stick 1");
                     direction = "left";
@@ -108,10 +116,10 @@ public class Controller {
 
                 if (code == KeyCode.RIGHT) {
                     if (player == 1) {
-                        image1X = image1X + 5;
+                        x1 = x1 + 5;
 
                     } else {
-                        image2X = image2X + 5;
+                        x2 = x2 + 5;
                     }
                     System.out.println("Moving Stick 1");
                     direction = "right";
@@ -121,9 +129,9 @@ public class Controller {
 
                 Message message;
                 if (player == 1) {
-                    message = new Message(player, image1X, image1Y);
+                    message = new Message(player, x1, y1, xv1, yv1, rl1);
                 } else {
-                    message = new Message(player, image2X, image2Y);
+                    message = new Message(player, x2, y2, xv2, yv2, rl2);
 
                 }
 
@@ -134,14 +142,13 @@ public class Controller {
                 }
             }
         });
-
     }
 
     void draw() {
         gc.clearRect(0, 0, cc.getWidth(), cc.getHeight());
         gc.drawImage(image, 120, 100, 300, 300);
-        gc.drawImage(image1, image1X, image1Y, 40, 40);
-        gc.drawImage(image2, image2X, image2Y, 40, 40);
+        gc.drawImage(image1, x1, y1, 40, 40);
+        gc.drawImage(image2, x2, y2, 40, 40);
     }
 
     void setServerMode() {
@@ -220,16 +227,22 @@ public class Controller {
         cc.setFocusTraversable(true);
     }
 
-    public void changeXY(int player, int x, int y) {
+    public void changeXY(int player, double x, double y, double xv, double yv, double rl) {
 
         if (player == 1) {
-            image1X = x;
-            image1Y = y;
+            x1 = x;
+            y1 = y;
+            xv1 = xv;
+            yv1 = yv;
+            rl1 = rl;
         }
 
         if (player == 2) {
-            image2X = x;
-            image2Y = y;
+            x2 = x;
+            y2 = y;
+            xv2 = xv;
+            yv2 = yv;
+            rl2 = rl;
         }
         draw();
     }
