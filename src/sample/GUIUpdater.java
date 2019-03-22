@@ -30,7 +30,11 @@ public class GUIUpdater implements Runnable{
 
             controller.changeXY(finalMessage.sender(), finalMessage.getX(), finalMessage.getY(), finalMessage.getXv(), finalMessage.getYv(), finalMessage.getRl());
 
-
+            try {
+                Thread.sleep(25);
+            } catch (Exception err) {
+                err.printStackTrace();
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ package sample;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -25,11 +26,11 @@ public class Controller {
     public Button startButton;
     public TextField statusText;
     public TextField yourNameText;
-    public int player;
     public Canvas cc;
     public GraphicsContext gc;
     public String directionMoved;
 
+    public int player;
     double x1 = 130;
     double xv1 = 220;
     double yv1 = 0;
